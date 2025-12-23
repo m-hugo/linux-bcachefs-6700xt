@@ -5164,97 +5164,12 @@ int amdgpu_ras_error_statistic_de_count(struct ras_err_data *err_data,
 static void amdgpu_ras_boot_time_error_reporting(struct amdgpu_device *adev,
 						 u32 instance)
 {
-	u32 socket_id, aid_id, hbm_id;
-	u32 fw_status;
-	u32 boot_error;
-	u64 reg_addr;
-
-	/* The pattern for smn addressing in other SOC could be different from
-	 * the one for aqua_vanjaram. We should revisit the code if the pattern
-	 * is changed. In such case, replace the aqua_vanjaram implementation
-	 * with more common helper */
-	reg_addr = (mmMP0_SMN_C2PMSG_92 << 2) +
-		   aqua_vanjaram_encode_ext_smn_addressing(instance);
-	fw_status = amdgpu_device_indirect_rreg_ext(adev, reg_addr);
-
-	reg_addr = (mmMP0_SMN_C2PMSG_126 << 2) +
-		   aqua_vanjaram_encode_ext_smn_addressing(instance);
-	boot_error = amdgpu_device_indirect_rreg_ext(adev, reg_addr);
-
-	socket_id = AMDGPU_RAS_GPU_ERR_SOCKET_ID(boot_error);
-	aid_id = AMDGPU_RAS_GPU_ERR_AID_ID(boot_error);
-	hbm_id = ((1 == AMDGPU_RAS_GPU_ERR_HBM_ID(boot_error)) ? 0 : 1);
-
-	if (AMDGPU_RAS_GPU_ERR_MEM_TRAINING(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, hbm: %d, fw_status: 0x%x, memory training failed\n",
-			 socket_id, aid_id, hbm_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_FW_LOAD(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, firmware load failed at boot time\n",
-			 socket_id, aid_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_WAFL_LINK_TRAINING(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, wafl link training failed\n",
-			 socket_id, aid_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_XGMI_LINK_TRAINING(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, xgmi link training failed\n",
-			 socket_id, aid_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_USR_CP_LINK_TRAINING(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, usr cp link training failed\n",
-			 socket_id, aid_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_USR_DP_LINK_TRAINING(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, usr dp link training failed\n",
-			 socket_id, aid_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_HBM_MEM_TEST(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, hbm: %d, fw_status: 0x%x, hbm memory test failed\n",
-			 socket_id, aid_id, hbm_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_HBM_BIST_TEST(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, hbm: %d, fw_status: 0x%x, hbm bist test failed\n",
-			 socket_id, aid_id, hbm_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_DATA_ABORT(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, data abort exception\n",
-			 socket_id, aid_id, fw_status);
-
-	if (AMDGPU_RAS_GPU_ERR_GENERIC(boot_error))
-		dev_info(adev->dev,
-			 "socket: %d, aid: %d, fw_status: 0x%x, Boot Controller Generic Error\n",
-			 socket_id, aid_id, fw_status);
 }
 
 static bool amdgpu_ras_boot_error_detected(struct amdgpu_device *adev,
 					   u32 instance)
 {
-	u64 reg_addr;
-	u32 reg_data;
-	int retry_loop;
-
-	reg_addr = (mmMP0_SMN_C2PMSG_92 << 2) +
-		   aqua_vanjaram_encode_ext_smn_addressing(instance);
-
-	for (retry_loop = 0; retry_loop < AMDGPU_RAS_BOOT_STATUS_POLLING_LIMIT; retry_loop++) {
-		reg_data = amdgpu_device_indirect_rreg_ext(adev, reg_addr);
-		if ((reg_data & AMDGPU_RAS_BOOT_STATUS_MASK) == AMDGPU_RAS_BOOT_STEADY_STATUS)
-			return false;
-		else
-			msleep(1);
-	}
-
-	return true;
+	return false;
 }
 
 void amdgpu_ras_query_boot_status(struct amdgpu_device *adev, u32 num_instances)

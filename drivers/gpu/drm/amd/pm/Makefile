@@ -38,7 +38,7 @@ subdir-ccflags-y += \
 
 AMD_PM_PATH = ../pm
 
-PM_LIBS = swsmu powerplay legacy-dpm
+PM_LIBS = swsmu legacy-dpm
 
 AMD_PM = $(addsuffix /Makefile,$(addprefix $(FULL_AMD_PATH)/pm/,$(PM_LIBS)))
 
