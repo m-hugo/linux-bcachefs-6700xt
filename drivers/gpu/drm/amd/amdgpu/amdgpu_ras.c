@@ -4005,12 +4005,6 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
 	 * ras functions so hardware fatal error interrupt
 	 * can be enabled as early as possible */
 	switch (amdgpu_ip_version(adev, NBIO_HWIP, 0)) {
-	case IP_VERSION(7, 4, 0):
-	case IP_VERSION(7, 4, 1):
-	case IP_VERSION(7, 4, 4):
-		if (!adev->gmc.xgmi.connected_to_cpu)
-			adev->nbio.ras = &nbio_v7_4_ras;
-		break;
 	case IP_VERSION(4, 3, 0):
 		if (adev->ras_hw_enabled & (1 << AMDGPU_RAS_BLOCK__DF))
 			/* unlike other generation of nbio ras,
@@ -4031,11 +4025,6 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
 			 * check DF RAS
 			 */
 			adev->nbio.ras = &nbif_v6_3_1_ras;
-		break;
-	case IP_VERSION(7, 9, 0):
-	case IP_VERSION(7, 9, 1):
-		if (!adev->gmc.is_app_apu)
-			adev->nbio.ras = &nbio_v7_9_ras;
 		break;
 	default:
 		/* nbio ras is not available */

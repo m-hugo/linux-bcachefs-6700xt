@@ -80,11 +80,11 @@ amdgpu-$(CONFIG_DRM_AMDGPU_SI)+= si.o gmc_v6_0.o si_ih.o si_dma.o dce_v6_0.o \
 	uvd_v3_1.o
 
 amdgpu-y += \
-	vi.o mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o  nbio_v7_0.o \
-	nbio_v7_4.o nbio_v2_3.o nv.o arct_reg_init.o mxgpu_nv.o \
-	nbio_v7_2.o hdp_v4_0.o hdp_v5_0.o soc21.o soc24.o \
-	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v6_0.o nbio_v7_7.o hdp_v5_2.o \
-	nbio_v7_9.o nbio_v7_11.o hdp_v7_0.o nbif_v6_3_1.o
+	vi.o mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o \
+	nbio_v2_3.o nv.o mxgpu_nv.o \
+	hdp_v4_0.o hdp_v5_0.o soc21.o soc24.o \
+	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v5_2.o \
+	nbif_v6_3_1.o
 
 # add DF block
 amdgpu-y += \

@@ -2349,39 +2349,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 	int r;
 
 	switch (adev->asic_type) {
-	case CHIP_ARCTURUS:
-		/* This is not fatal.  We only need the discovery
-		 * binary for sysfs.  We don't need it for a
-		 * functional system.
-		 */
-		amdgpu_discovery_init(adev);
-		arct_reg_base_init(adev);
-		adev->sdma.num_instances = 8;
-		adev->vcn.num_vcn_inst = 2;
-		adev->gmc.num_umc = 8;
-		adev->ip_versions[MMHUB_HWIP][0] = IP_VERSION(9, 4, 1);
-		adev->ip_versions[ATHUB_HWIP][0] = IP_VERSION(9, 4, 1);
-		adev->ip_versions[OSSSYS_HWIP][0] = IP_VERSION(4, 2, 1);
-		adev->ip_versions[HDP_HWIP][0] = IP_VERSION(4, 2, 1);
-		adev->ip_versions[SDMA0_HWIP][0] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][0] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][1] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][2] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][3] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][4] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][5] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[SDMA1_HWIP][6] = IP_VERSION(4, 2, 2);
-		adev->ip_versions[DF_HWIP][0] = IP_VERSION(3, 6, 1);
-		adev->ip_versions[NBIO_HWIP][0] = IP_VERSION(7, 4, 1);
-		adev->ip_versions[UMC_HWIP][0] = IP_VERSION(6, 1, 2);
-		adev->ip_versions[MP0_HWIP][0] = IP_VERSION(11, 0, 4);
-		adev->ip_versions[MP1_HWIP][0] = IP_VERSION(11, 0, 2);
-		adev->ip_versions[THM_HWIP][0] = IP_VERSION(11, 0, 3);
-		adev->ip_versions[SMUIO_HWIP][0] = IP_VERSION(11, 0, 3);
-		adev->ip_versions[GC_HWIP][0] = IP_VERSION(9, 4, 1);
-		adev->ip_versions[UVD_HWIP][0] = IP_VERSION(2, 5, 0);
-		adev->ip_versions[UVD_HWIP][1] = IP_VERSION(2, 5, 0);
-		break;
 	default:
 		r = amdgpu_discovery_reg_base_init(adev);
 		if (r) {
@@ -2400,21 +2367,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 	amdgpu_discovery_sysfs_init(adev);
 
 	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-	case IP_VERSION(9, 0, 1):
-	case IP_VERSION(9, 2, 1):
-	case IP_VERSION(9, 4, 0):
-	case IP_VERSION(9, 4, 1):
-	case IP_VERSION(9, 4, 2):
-	case IP_VERSION(9, 4, 3):
-	case IP_VERSION(9, 4, 4):
-	case IP_VERSION(9, 5, 0):
-		adev->family = AMDGPU_FAMILY_AI;
-		break;
-	case IP_VERSION(9, 1, 0):
-	case IP_VERSION(9, 2, 2):
-	case IP_VERSION(9, 3, 0):
-		adev->family = AMDGPU_FAMILY_RV;
-		break;
 	case IP_VERSION(10, 1, 10):
 	case IP_VERSION(10, 1, 1):
 	case IP_VERSION(10, 1, 2):
@@ -2426,103 +2378,12 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 	case IP_VERSION(10, 3, 5):
 		adev->family = AMDGPU_FAMILY_NV;
 		break;
-	case IP_VERSION(10, 3, 1):
-		adev->family = AMDGPU_FAMILY_VGH;
-		adev->apu_flags |= AMD_APU_IS_VANGOGH;
-		break;
-	case IP_VERSION(10, 3, 3):
-		adev->family = AMDGPU_FAMILY_YC;
-		break;
-	case IP_VERSION(10, 3, 6):
-		adev->family = AMDGPU_FAMILY_GC_10_3_6;
-		break;
-	case IP_VERSION(10, 3, 7):
-		adev->family = AMDGPU_FAMILY_GC_10_3_7;
-		break;
-	case IP_VERSION(11, 0, 0):
-	case IP_VERSION(11, 0, 2):
-	case IP_VERSION(11, 0, 3):
-		adev->family = AMDGPU_FAMILY_GC_11_0_0;
-		break;
-	case IP_VERSION(11, 0, 1):
-	case IP_VERSION(11, 0, 4):
-		adev->family = AMDGPU_FAMILY_GC_11_0_1;
-		break;
-	case IP_VERSION(11, 5, 0):
-	case IP_VERSION(11, 5, 1):
-	case IP_VERSION(11, 5, 2):
-	case IP_VERSION(11, 5, 3):
-		adev->family = AMDGPU_FAMILY_GC_11_5_0;
-		break;
-	case IP_VERSION(12, 0, 0):
-	case IP_VERSION(12, 0, 1):
-		adev->family = AMDGPU_FAMILY_GC_12_0_0;
-		break;
 	default:
 		return -EINVAL;
 	}
 
-	switch (amdgpu_ip_version(adev, GC_HWIP, 0)) {
-	case IP_VERSION(9, 1, 0):
-	case IP_VERSION(9, 2, 2):
-	case IP_VERSION(9, 3, 0):
-	case IP_VERSION(10, 1, 3):
-	case IP_VERSION(10, 1, 4):
-	case IP_VERSION(10, 3, 1):
-	case IP_VERSION(10, 3, 3):
-	case IP_VERSION(10, 3, 6):
-	case IP_VERSION(10, 3, 7):
-	case IP_VERSION(11, 0, 1):
-	case IP_VERSION(11, 0, 4):
-	case IP_VERSION(11, 5, 0):
-	case IP_VERSION(11, 5, 1):
-	case IP_VERSION(11, 5, 2):
-	case IP_VERSION(11, 5, 3):
-		adev->flags |= AMD_IS_APU;
-		break;
-	default:
-		break;
-	}
-
 	/* set NBIO version */
 	switch (amdgpu_ip_version(adev, NBIO_HWIP, 0)) {
-	case IP_VERSION(6, 1, 0):
-	case IP_VERSION(6, 2, 0):
-		adev->nbio.funcs = &nbio_v6_1_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v6_1_hdp_flush_reg;
-		break;
-	case IP_VERSION(7, 0, 0):
-	case IP_VERSION(7, 0, 1):
-	case IP_VERSION(2, 5, 0):
-		adev->nbio.funcs = &nbio_v7_0_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v7_0_hdp_flush_reg;
-		break;
-	case IP_VERSION(7, 4, 0):
-	case IP_VERSION(7, 4, 1):
-	case IP_VERSION(7, 4, 4):
-		adev->nbio.funcs = &nbio_v7_4_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v7_4_hdp_flush_reg;
-		break;
-	case IP_VERSION(7, 9, 0):
-	case IP_VERSION(7, 9, 1):
-		adev->nbio.funcs = &nbio_v7_9_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v7_9_hdp_flush_reg;
-		break;
-	case IP_VERSION(7, 11, 0):
-	case IP_VERSION(7, 11, 1):
-	case IP_VERSION(7, 11, 2):
-	case IP_VERSION(7, 11, 3):
-		adev->nbio.funcs = &nbio_v7_11_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v7_11_hdp_flush_reg;
-		break;
-	case IP_VERSION(7, 2, 0):
-	case IP_VERSION(7, 2, 1):
-	case IP_VERSION(7, 3, 0):
-	case IP_VERSION(7, 5, 0):
-	case IP_VERSION(7, 5, 1):
-		adev->nbio.funcs = &nbio_v7_2_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v7_2_hdp_flush_reg;
-		break;
 	case IP_VERSION(2, 1, 1):
 	case IP_VERSION(2, 3, 0):
 	case IP_VERSION(2, 3, 1):
@@ -2541,15 +2402,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 		else
 			adev->nbio.funcs = &nbio_v4_3_funcs;
 		adev->nbio.hdp_flush_reg = &nbio_v4_3_hdp_flush_reg;
-		break;
-	case IP_VERSION(7, 7, 0):
-	case IP_VERSION(7, 7, 1):
-		adev->nbio.funcs = &nbio_v7_7_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v7_7_hdp_flush_reg;
-		break;
-	case IP_VERSION(6, 3, 1):
-		adev->nbio.funcs = &nbif_v6_3_1_funcs;
-		adev->nbio.hdp_flush_reg = &nbif_v6_3_1_hdp_flush_reg;
 		break;
 	default:
 		break;
@@ -2578,14 +2430,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 		break;
 	case IP_VERSION(5, 2, 1):
 		adev->hdp.funcs = &hdp_v5_2_funcs;
-		break;
-	case IP_VERSION(6, 0, 0):
-	case IP_VERSION(6, 0, 1):
-	case IP_VERSION(6, 1, 0):
-		adev->hdp.funcs = &hdp_v6_0_funcs;
-		break;
-	case IP_VERSION(7, 0, 0):
-		adev->hdp.funcs = &hdp_v7_0_funcs;
 		break;
 	default:
 		break;

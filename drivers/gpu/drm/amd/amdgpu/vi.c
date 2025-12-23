@@ -2038,15 +2038,6 @@ static const struct amd_ip_funcs vi_common_ip_funcs = {
 	.get_clockgating_state = vi_common_get_clockgating_state,
 };
 
-static const struct amdgpu_ip_block_version vi_common_ip_block =
-{
-	.type = AMD_IP_BLOCK_TYPE_COMMON,
-	.major = 1,
-	.minor = 0,
-	.rev = 0,
-	.funcs = &vi_common_ip_funcs,
-};
-
 void vi_set_virt_ops(struct amdgpu_device *adev)
 {
 	adev->virt.ops = &xgpu_vi_virt_ops;
