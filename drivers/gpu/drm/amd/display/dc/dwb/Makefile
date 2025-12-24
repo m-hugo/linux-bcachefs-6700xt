@@ -33,14 +33,4 @@ AMD_DAL_DWB_DCN30 = $(addprefix $(AMDDALPATH)/dc/dwb/dcn30/,$(DWB_DCN30))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_DWB_DCN30)
 
-###############################################################################
-# DCN35
-###############################################################################
-DWB_DCN35 = dcn35_dwb.o
-
-AMD_DAL_DWB_DCN35 = $(addprefix $(AMDDALPATH)/dc/dwb/dcn35/,$(DWB_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DWB_DCN35)
-
-
 endif

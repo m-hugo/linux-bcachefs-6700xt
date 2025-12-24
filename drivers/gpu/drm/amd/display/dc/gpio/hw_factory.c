@@ -60,35 +60,6 @@ bool dal_hw_factory_init(
 	enum dce_environment dce_environment)
 {
 	switch (dce_version) {
-#if defined(CONFIG_DRM_AMD_DC_SI)
-	case DCE_VERSION_6_0:
-	case DCE_VERSION_6_1:
-	case DCE_VERSION_6_4:
-		dal_hw_factory_dce60_init(factory);
-		return true;
-#endif
-	case DCE_VERSION_8_0:
-	case DCE_VERSION_8_1:
-	case DCE_VERSION_8_3:
-		dal_hw_factory_dce80_init(factory);
-		return true;
-
-	case DCE_VERSION_10_0:
-		dal_hw_factory_dce110_init(factory);
-		return true;
-	case DCE_VERSION_11_0:
-	case DCE_VERSION_11_2:
-	case DCE_VERSION_11_22:
-		dal_hw_factory_dce110_init(factory);
-		return true;
-	case DCE_VERSION_12_0:
-	case DCE_VERSION_12_1:
-		dal_hw_factory_dce120_init(factory);
-		return true;
-	case DCN_VERSION_1_0:
-	case DCN_VERSION_1_01:
-		dal_hw_factory_dcn10_init(factory);
-		return true;
 	case DCN_VERSION_2_0:
 		dal_hw_factory_dcn20_init(factory);
 		return true;
@@ -107,16 +78,6 @@ bool dal_hw_factory_init(
 		return true;
 	case DCN_VERSION_3_15:
 		dal_hw_factory_dcn315_init(factory);
-		return true;
-	case DCN_VERSION_3_2:
-	case DCN_VERSION_3_21:
-	case DCN_VERSION_3_5:
-	case DCN_VERSION_3_51:
-	case DCN_VERSION_3_6:
-		dal_hw_factory_dcn32_init(factory);
-		return true;
-	case DCN_VERSION_4_01:
-		dal_hw_factory_dcn401_init(factory);
 		return true;
 	default:
 		ASSERT_CRITICAL(false);

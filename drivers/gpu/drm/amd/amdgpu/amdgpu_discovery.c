@@ -1992,13 +1992,6 @@ static int amdgpu_discovery_set_ih_ip_blocks(struct amdgpu_device *adev)
 static int amdgpu_discovery_set_psp_ip_blocks(struct amdgpu_device *adev)
 {
 	switch (amdgpu_ip_version(adev, MP0_HWIP, 0)) {
-	case IP_VERSION(9, 0, 0):
-		amdgpu_device_ip_block_add(adev, &psp_v3_1_ip_block);
-		break;
-	case IP_VERSION(10, 0, 0):
-	case IP_VERSION(10, 0, 1):
-		amdgpu_device_ip_block_add(adev, &psp_v10_0_ip_block);
-		break;
 	case IP_VERSION(11, 0, 0):
 	case IP_VERSION(11, 0, 2):
 	case IP_VERSION(11, 0, 4):
@@ -2016,34 +2009,6 @@ static int amdgpu_discovery_set_psp_ip_blocks(struct amdgpu_device *adev)
 		amdgpu_device_ip_block_add(adev, &psp_v11_0_8_ip_block);
 		break;
 	case IP_VERSION(11, 0, 3):
-	case IP_VERSION(12, 0, 1):
-		amdgpu_device_ip_block_add(adev, &psp_v12_0_ip_block);
-		break;
-	case IP_VERSION(13, 0, 0):
-	case IP_VERSION(13, 0, 1):
-	case IP_VERSION(13, 0, 2):
-	case IP_VERSION(13, 0, 3):
-	case IP_VERSION(13, 0, 5):
-	case IP_VERSION(13, 0, 6):
-	case IP_VERSION(13, 0, 7):
-	case IP_VERSION(13, 0, 8):
-	case IP_VERSION(13, 0, 10):
-	case IP_VERSION(13, 0, 11):
-	case IP_VERSION(13, 0, 12):
-	case IP_VERSION(13, 0, 14):
-	case IP_VERSION(14, 0, 0):
-	case IP_VERSION(14, 0, 1):
-	case IP_VERSION(14, 0, 4):
-		amdgpu_device_ip_block_add(adev, &psp_v13_0_ip_block);
-		break;
-	case IP_VERSION(13, 0, 4):
-		amdgpu_device_ip_block_add(adev, &psp_v13_0_4_ip_block);
-		break;
-	case IP_VERSION(14, 0, 2):
-	case IP_VERSION(14, 0, 3):
-	case IP_VERSION(14, 0, 5):
-		amdgpu_device_ip_block_add(adev, &psp_v14_0_ip_block);
-		break;
 	default:
 		dev_err(adev->dev,
 			"Failed to add psp ip block(MP0_HWIP:0x%x)\n",
@@ -2067,33 +2032,6 @@ static int amdgpu_discovery_set_smu_ip_blocks(struct amdgpu_device *adev)
 	case IP_VERSION(11, 5, 0):
 	case IP_VERSION(11, 5, 2):
 		amdgpu_device_ip_block_add(adev, &smu_v11_0_ip_block);
-		break;
-	case IP_VERSION(12, 0, 0):
-	case IP_VERSION(12, 0, 1):
-		amdgpu_device_ip_block_add(adev, &smu_v12_0_ip_block);
-		break;
-	case IP_VERSION(13, 0, 0):
-	case IP_VERSION(13, 0, 1):
-	case IP_VERSION(13, 0, 2):
-	case IP_VERSION(13, 0, 3):
-	case IP_VERSION(13, 0, 4):
-	case IP_VERSION(13, 0, 5):
-	case IP_VERSION(13, 0, 6):
-	case IP_VERSION(13, 0, 7):
-	case IP_VERSION(13, 0, 8):
-	case IP_VERSION(13, 0, 10):
-	case IP_VERSION(13, 0, 11):
-	case IP_VERSION(13, 0, 14):
-	case IP_VERSION(13, 0, 12):
-		amdgpu_device_ip_block_add(adev, &smu_v13_0_ip_block);
-		break;
-	case IP_VERSION(14, 0, 0):
-	case IP_VERSION(14, 0, 1):
-	case IP_VERSION(14, 0, 2):
-	case IP_VERSION(14, 0, 3):
-	case IP_VERSION(14, 0, 4):
-	case IP_VERSION(14, 0, 5):
-		amdgpu_device_ip_block_add(adev, &smu_v14_0_ip_block);
 		break;
 	default:
 		dev_err(adev->dev,
@@ -2435,41 +2373,7 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 		break;
 	}
 
-	switch (amdgpu_ip_version(adev, DF_HWIP, 0)) {
-	case IP_VERSION(3, 6, 0):
-	case IP_VERSION(3, 6, 1):
-	case IP_VERSION(3, 6, 2):
-		adev->df.funcs = &df_v3_6_funcs;
-		break;
-	case IP_VERSION(2, 1, 0):
-	case IP_VERSION(2, 1, 1):
-	case IP_VERSION(2, 5, 0):
-	case IP_VERSION(3, 5, 1):
-	case IP_VERSION(3, 5, 2):
-		adev->df.funcs = &df_v1_7_funcs;
-		break;
-	case IP_VERSION(4, 3, 0):
-		adev->df.funcs = &df_v4_3_funcs;
-		break;
-	case IP_VERSION(4, 6, 2):
-		adev->df.funcs = &df_v4_6_2_funcs;
-		break;
-	case IP_VERSION(4, 15, 0):
-	case IP_VERSION(4, 15, 1):
-		adev->df.funcs = &df_v4_15_funcs;
-		break;
-	default:
-		break;
-	}
-
 	switch (amdgpu_ip_version(adev, SMUIO_HWIP, 0)) {
-	case IP_VERSION(9, 0, 0):
-	case IP_VERSION(9, 0, 1):
-	case IP_VERSION(10, 0, 0):
-	case IP_VERSION(10, 0, 1):
-	case IP_VERSION(10, 0, 2):
-		adev->smuio.funcs = &smuio_v9_0_funcs;
-		break;
 	case IP_VERSION(11, 0, 0):
 	case IP_VERSION(11, 0, 2):
 	case IP_VERSION(11, 0, 3):
@@ -2487,25 +2391,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 	case IP_VERSION(13, 0, 9):
 	case IP_VERSION(13, 0, 10):
 		adev->smuio.funcs = &smuio_v11_0_6_funcs;
-		break;
-	case IP_VERSION(13, 0, 2):
-		adev->smuio.funcs = &smuio_v13_0_funcs;
-		break;
-	case IP_VERSION(13, 0, 3):
-	case IP_VERSION(13, 0, 11):
-		adev->smuio.funcs = &smuio_v13_0_3_funcs;
-		if (adev->smuio.funcs->get_pkg_type(adev) == AMDGPU_PKG_TYPE_APU) {
-			adev->flags |= AMD_IS_APU;
-		}
-		break;
-	case IP_VERSION(13, 0, 6):
-	case IP_VERSION(13, 0, 8):
-	case IP_VERSION(14, 0, 0):
-	case IP_VERSION(14, 0, 1):
-		adev->smuio.funcs = &smuio_v13_0_6_funcs;
-		break;
-	case IP_VERSION(14, 0, 2):
-		adev->smuio.funcs = &smuio_v14_0_2_funcs;
 		break;
 	default:
 		break;

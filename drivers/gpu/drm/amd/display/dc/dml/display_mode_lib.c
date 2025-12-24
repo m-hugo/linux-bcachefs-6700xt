@@ -83,13 +83,6 @@ static const struct dml_funcs dml314_funcs = {
 	.rq_dlg_get_rq_reg = dml314_rq_dlg_get_rq_reg
 };
 
-static const struct dml_funcs dml32_funcs = {
-	.validate = dml32_ModeSupportAndSystemConfigurationFull,
-	.recalculate = dml32_recalculate,
-	.rq_dlg_get_dlg_reg_v2 = dml32_rq_dlg_get_dlg_reg,
-	.rq_dlg_get_rq_reg_v2 = dml32_rq_dlg_get_rq_reg
-};
-
 void dml_init_instance(struct display_mode_lib *lib,
 		const struct _vcs_dpi_soc_bounding_box_st *soc_bb,
 		const struct _vcs_dpi_ip_params_st *ip_params,
@@ -119,10 +112,6 @@ void dml_init_instance(struct display_mode_lib *lib,
 	case DML_PROJECT_DCN314:
 		lib->funcs = dml314_funcs;
 		break;
-	case DML_PROJECT_DCN32:
-		lib->funcs = dml32_funcs;
-		break;
-
 	default:
 		break;
 	}

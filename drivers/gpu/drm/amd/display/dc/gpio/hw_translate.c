@@ -64,32 +64,6 @@ bool dal_hw_translate_init(
 	enum dce_environment dce_environment)
 {
 	switch (dce_version) {
-#if defined(CONFIG_DRM_AMD_DC_SI)
-	case DCE_VERSION_6_0:
-	case DCE_VERSION_6_1:
-	case DCE_VERSION_6_4:
-		dal_hw_translate_dce60_init(translate);
-		return true;
-#endif
-	case DCE_VERSION_8_0:
-	case DCE_VERSION_8_1:
-	case DCE_VERSION_8_3:
-		dal_hw_translate_dce80_init(translate);
-		return true;
-	case DCE_VERSION_10_0:
-	case DCE_VERSION_11_0:
-	case DCE_VERSION_11_2:
-	case DCE_VERSION_11_22:
-		dal_hw_translate_dce110_init(translate);
-		return true;
-	case DCE_VERSION_12_0:
-	case DCE_VERSION_12_1:
-		dal_hw_translate_dce120_init(translate);
-		return true;
-	case DCN_VERSION_1_0:
-	case DCN_VERSION_1_01:
-		dal_hw_translate_dcn10_init(translate);
-		return true;
 	case DCN_VERSION_2_0:
 		dal_hw_translate_dcn20_init(translate);
 		return true;
@@ -108,16 +82,6 @@ bool dal_hw_translate_init(
 		return true;
 	case DCN_VERSION_3_15:
 		dal_hw_translate_dcn315_init(translate);
-		return true;
-	case DCN_VERSION_3_2:
-	case DCN_VERSION_3_21:
-	case DCN_VERSION_3_5:
-	case DCN_VERSION_3_51:
-	case DCN_VERSION_3_6:
-		dal_hw_translate_dcn32_init(translate);
-		return true;
-	case DCN_VERSION_4_01:
-		dal_hw_translate_dcn401_init(translate);
 		return true;
 	default:
 		BREAK_TO_DEBUGGER();

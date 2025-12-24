@@ -72,27 +72,12 @@ amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
 
 amdgpu-$(CONFIG_PERF_EVENTS) += amdgpu_pmu.o
 
-# add asic specific block
-amdgpu-$(CONFIG_DRM_AMDGPU_CIK)+= cik.o cik_ih.o \
-	dce_v8_0.o cik_sdma.o uvd_v4_2.o vce_v2_0.o
-
-amdgpu-$(CONFIG_DRM_AMDGPU_SI)+= si.o gmc_v6_0.o si_ih.o si_dma.o dce_v6_0.o \
-	uvd_v3_1.o
-
 amdgpu-y += \
-	vi.o mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o \
+	mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o \
 	nbio_v2_3.o nv.o mxgpu_nv.o \
 	hdp_v4_0.o hdp_v5_0.o soc21.o soc24.o \
 	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v5_2.o \
 	nbif_v6_3_1.o
-
-# add DF block
-amdgpu-y += \
-	df_v1_7.o \
-	df_v3_6.o \
-	df_v4_3.o \
-	df_v4_6_2.o \
-	df_v4_15.o
 
 # add GMC block
 amdgpu-y += \
@@ -120,14 +105,8 @@ amdgpu-y += \
 # add PSP block
 amdgpu-y += \
 	amdgpu_psp.o \
-	psp_v3_1.o \
-	psp_v10_0.o \
 	psp_v11_0.o \
-	psp_v11_0_8.o \
-	psp_v12_0.o \
-	psp_v13_0.o \
-	psp_v13_0_4.o \
-	psp_v14_0.o
+	psp_v11_0_8.o
 
 # add DCE block
 amdgpu-y += \
@@ -219,13 +198,8 @@ amdgpu-y += \
 
 # add SMUIO block
 amdgpu-y += \
-	smuio_v9_0.o \
 	smuio_v11_0.o \
-	smuio_v11_0_6.o \
-	smuio_v13_0.o \
-	smuio_v13_0_3.o \
-	smuio_v13_0_6.o \
-	smuio_v14_0_2.o
+	smuio_v11_0_6.o
 
 # add reset block
 amdgpu-y += \

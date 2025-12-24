@@ -39,12 +39,5 @@ HPO_DCN31 = dcn31_hpo_dp_stream_encoder.o dcn31_hpo_dp_link_encoder.o
 AMD_DAL_HPO_DCN31 = $(addprefix $(AMDDALPATH)/dc/hpo/dcn31/,$(HPO_DCN31))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_HPO_DCN31)
-###############################################################################
-# DCN32
-###############################################################################
-HPO_DCN32 = dcn32_hpo_dp_link_encoder.o
 
-AMD_DAL_HPO_DCN32 = $(addprefix $(AMDDALPATH)/dc/hpo/dcn32/,$(HPO_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HPO_DCN32)
 endif

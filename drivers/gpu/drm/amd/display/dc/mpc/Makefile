@@ -51,22 +51,4 @@ AMD_DAL_MPC_DCN30 = $(addprefix $(AMDDALPATH)/dc/mpc/dcn30/,$(MPC_DCN30))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_MPC_DCN30)
 
-###############################################################################
-# DCN32
-###############################################################################
-MPC_DCN32 = dcn32_mpc.o
-
-AMD_DAL_MPC_DCN32 = $(addprefix $(AMDDALPATH)/dc/mpc/dcn32/,$(MPC_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_MPC_DCN32)
-
-###############################################################################
-# DCN401
-###############################################################################
-MPC_DCN401 = dcn401_mpc.o
-
-AMD_DAL_MPC_DCN401 = $(addprefix $(AMDDALPATH)/dc/mpc/dcn401/,$(MPC_DCN401))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_MPC_DCN401)
-
 endif
