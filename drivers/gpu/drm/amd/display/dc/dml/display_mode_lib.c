@@ -69,20 +69,6 @@ static const struct dml_funcs dml30_funcs = {
 	.rq_dlg_get_rq_reg = dml30_rq_dlg_get_rq_reg
 };
 
-static const struct dml_funcs dml31_funcs = {
-	.validate = dml31_ModeSupportAndSystemConfigurationFull,
-	.recalculate = dml31_recalculate,
-	.rq_dlg_get_dlg_reg = dml31_rq_dlg_get_dlg_reg,
-	.rq_dlg_get_rq_reg = dml31_rq_dlg_get_rq_reg
-};
-
-static const struct dml_funcs dml314_funcs = {
-	.validate = dml314_ModeSupportAndSystemConfigurationFull,
-	.recalculate = dml314_recalculate,
-	.rq_dlg_get_dlg_reg = dml314_rq_dlg_get_dlg_reg,
-	.rq_dlg_get_rq_reg = dml314_rq_dlg_get_rq_reg
-};
-
 void dml_init_instance(struct display_mode_lib *lib,
 		const struct _vcs_dpi_soc_bounding_box_st *soc_bb,
 		const struct _vcs_dpi_ip_params_st *ip_params,
@@ -104,13 +90,6 @@ void dml_init_instance(struct display_mode_lib *lib,
                 break;
 	case DML_PROJECT_DCN30:
 		lib->funcs = dml30_funcs;
-		break;
-	case DML_PROJECT_DCN31:
-	case DML_PROJECT_DCN315:
-		lib->funcs = dml31_funcs;
-		break;
-	case DML_PROJECT_DCN314:
-		lib->funcs = dml314_funcs;
 		break;
 	default:
 		break;

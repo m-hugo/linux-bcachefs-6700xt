@@ -234,54 +234,6 @@ static bool dmub_srv_hw_setup(struct dmub_srv *dmub, enum dmub_asic asic)
 		}
 		break;
 
-	case DMUB_ASIC_DCN31:
-	case DMUB_ASIC_DCN31B:
-	case DMUB_ASIC_DCN314:
-	case DMUB_ASIC_DCN315:
-	case DMUB_ASIC_DCN316:
-		if (asic == DMUB_ASIC_DCN314) {
-			dmub->regs_dcn31 = &dmub_srv_dcn314_regs;
-			funcs->is_psrsu_supported = dmub_dcn314_is_psrsu_supported;
-		} else if (asic == DMUB_ASIC_DCN315) {
-			dmub->regs_dcn31 = &dmub_srv_dcn315_regs;
-		} else if (asic == DMUB_ASIC_DCN316) {
-			dmub->regs_dcn31 = &dmub_srv_dcn316_regs;
-		} else {
-			dmub->regs_dcn31 = &dmub_srv_dcn31_regs;
-			funcs->is_psrsu_supported = dmub_dcn31_is_psrsu_supported;
-		}
-		funcs->reset = dmub_dcn31_reset;
-		funcs->reset_release = dmub_dcn31_reset_release;
-		funcs->backdoor_load = dmub_dcn31_backdoor_load;
-		funcs->setup_windows = dmub_dcn31_setup_windows;
-		funcs->setup_mailbox = dmub_dcn31_setup_mailbox;
-		funcs->get_inbox1_wptr = dmub_dcn31_get_inbox1_wptr;
-		funcs->get_inbox1_rptr = dmub_dcn31_get_inbox1_rptr;
-		funcs->set_inbox1_wptr = dmub_dcn31_set_inbox1_wptr;
-		funcs->setup_out_mailbox = dmub_dcn31_setup_out_mailbox;
-		funcs->get_outbox1_wptr = dmub_dcn31_get_outbox1_wptr;
-		funcs->set_outbox1_rptr = dmub_dcn31_set_outbox1_rptr;
-		funcs->is_supported = dmub_dcn31_is_supported;
-		funcs->is_hw_init = dmub_dcn31_is_hw_init;
-		funcs->set_gpint = dmub_dcn31_set_gpint;
-		funcs->is_gpint_acked = dmub_dcn31_is_gpint_acked;
-		funcs->get_gpint_response = dmub_dcn31_get_gpint_response;
-		funcs->get_gpint_dataout = dmub_dcn31_get_gpint_dataout;
-		funcs->get_fw_status = dmub_dcn31_get_fw_boot_status;
-		funcs->get_fw_boot_option = dmub_dcn31_get_fw_boot_option;
-		funcs->enable_dmub_boot_options = dmub_dcn31_enable_dmub_boot_options;
-		funcs->skip_dmub_panel_power_sequence = dmub_dcn31_skip_dmub_panel_power_sequence;
-		//outbox0 call stacks
-		funcs->setup_outbox0 = dmub_dcn31_setup_outbox0;
-		funcs->get_outbox0_wptr = dmub_dcn31_get_outbox0_wptr;
-		funcs->set_outbox0_rptr = dmub_dcn31_set_outbox0_rptr;
-
-		funcs->get_diagnostic_data = dmub_dcn31_get_diagnostic_data;
-		funcs->should_detect = dmub_dcn31_should_detect;
-		funcs->get_current_time = dmub_dcn31_get_current_time;
-
-		break;
-
 	default:
 		return false;
 	}

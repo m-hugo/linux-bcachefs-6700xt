@@ -28,17 +28,13 @@ subdir-ccflags-y += \
 		-I$(FULL_AMD_PATH)/pm/swsmu/inc \
 		-I$(FULL_AMD_PATH)/pm/swsmu/inc/pmfw_if \
 		-I$(FULL_AMD_PATH)/pm/swsmu/smu11 \
-		-I$(FULL_AMD_PATH)/pm/swsmu/smu12 \
-		-I$(FULL_AMD_PATH)/pm/swsmu/smu13 \
-		-I$(FULL_AMD_PATH)/pm/swsmu/smu14 \
 		-I$(FULL_AMD_PATH)/pm/powerplay/inc \
 		-I$(FULL_AMD_PATH)/pm/powerplay/smumgr\
-		-I$(FULL_AMD_PATH)/pm/powerplay/hwmgr \
-		-I$(FULL_AMD_PATH)/pm/legacy-dpm
+		-I$(FULL_AMD_PATH)/pm/powerplay/hwmgr
 
 AMD_PM_PATH = ../pm
 
-PM_LIBS = swsmu legacy-dpm
+PM_LIBS = swsmu
 
 AMD_PM = $(addsuffix /Makefile,$(addprefix $(FULL_AMD_PATH)/pm/,$(PM_LIBS)))
 

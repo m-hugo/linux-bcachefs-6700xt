@@ -162,18 +162,6 @@ struct resource_pool *dc_create_resource_pool(struct dc  *dc,
 	case DCN_VERSION_3_03:
 		res_pool = dcn303_create_resource_pool(init_data, dc);
 		break;
-	case DCN_VERSION_3_1:
-		res_pool = dcn31_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_14:
-		res_pool = dcn314_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_15:
-		res_pool = dcn315_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_16:
-		res_pool = dcn316_create_resource_pool(init_data, dc);
-		break;
 #endif /* CONFIG_DRM_AMD_DC_FP */
 	default:
 		break;

@@ -60,22 +60,4 @@ AMD_DAL_DIO_DCN301 = $(addprefix $(AMDDALPATH)/dc/dio/dcn301/,$(DIO_DCN301))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN301)
 
-###############################################################################
-# DCN31
-###############################################################################
-DIO_DCN31 = dcn31_dio_link_encoder.o
-
-AMD_DAL_DIO_DCN31 = $(addprefix $(AMDDALPATH)/dc/dio/dcn31/,$(DIO_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN31)
-
-###############################################################################
-# DCN314
-###############################################################################
-DIO_DCN314 = dcn314_dio_stream_encoder.o
-
-AMD_DAL_DIO_DCN314 = $(addprefix $(AMDDALPATH)/dc/dio/dcn314/,$(DIO_DCN314))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DIO_DCN314)
-
 endif

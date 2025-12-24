@@ -122,7 +122,6 @@ amdgpu-y += \
 # add async DMA block
 amdgpu-y += \
 	amdgpu_sdma.o \
-	sdma_v5_0.o \
 	sdma_v5_2.o
 
 # add MES block
@@ -176,33 +175,11 @@ amdgpu-y += amdgpu_amdkfd.o
 # add gfx usermode queue
 amdgpu-y += amdgpu_userq.o
 
-ifneq ($(CONFIG_HSA_AMD),)
-AMDKFD_PATH := ../amdkfd
-include $(FULL_AMD_PATH)/amdkfd/Makefile
-amdgpu-y += $(AMDKFD_FILES)
-amdgpu-y += \
-	amdgpu_amdkfd_fence.o \
-	amdgpu_amdkfd_gpuvm.o \
-	amdgpu_amdkfd_gc_9_4_3.o \
-	amdgpu_amdkfd_gfx_v10.o \
-	amdgpu_amdkfd_gfx_v10_3.o
-endif
-
 # add cgs
 amdgpu-y += amdgpu_cgs.o
 
 # GPU scheduler
 amdgpu-y += amdgpu_job.o
-
-# ACP componet
-ifneq ($(CONFIG_DRM_AMD_ACP),)
-amdgpu-y += amdgpu_acp.o
-
-AMDACPPATH := ../acp
-include $(FULL_AMD_PATH)/acp/Makefile
-
-amdgpu-y += $(AMD_ACP_FILES)
-endif
 
 amdgpu-$(CONFIG_COMPAT) += amdgpu_ioc32.o
 amdgpu-$(CONFIG_VGA_SWITCHEROO) += amdgpu_atpx_handler.o
@@ -210,24 +187,10 @@ amdgpu-$(CONFIG_ACPI) += amdgpu_acpi.o
 amdgpu-$(CONFIG_HMM_MIRROR) += amdgpu_hmm.o
 
 include $(FULL_AMD_PATH)/pm/Makefile
-
 amdgpu-y += $(AMD_POWERPLAY_FILES)
-
-ifneq ($(CONFIG_DRM_AMD_DC),)
 
 RELATIVE_AMD_DISPLAY_PATH = ../$(DISPLAY_FOLDER_NAME)
 include $(FULL_AMD_DISPLAY_PATH)/Makefile
-
 amdgpu-y += $(AMD_DISPLAY_FILES)
-
-endif
-
-# add isp block
-ifneq ($(CONFIG_DRM_AMD_ISP),)
-amdgpu-y += \
-	amdgpu_isp.o \
-	isp_v4_1_0.o \
-	isp_v4_1_1.o
-endif
 
 obj-$(CONFIG_DRM_AMDGPU)+= amdgpu.o

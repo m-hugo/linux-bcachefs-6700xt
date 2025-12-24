@@ -35,13 +35,6 @@ AMD_DAL_RESOURCE_DCE60 = $(addprefix $(AMDDALPATH)/dc/resource/dce60/,$(RESOURCE
 AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCE60)
 endif
 
-###############################################################################
-
-RESOURCE_DCE80 = dce80_resource.o
-
-AMD_DAL_RESOURCE_DCE80 = $(addprefix $(AMDDALPATH)/dc/resource/dce80/,$(RESOURCE_DCE80))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCE80)
 
 ###############################################################################
 
@@ -67,13 +60,6 @@ AMD_DAL_RESOURCE_DCE112 = $(addprefix $(AMDDALPATH)/dc/resource/dce112/,$(RESOUR
 
 AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCE112)
 
-###############################################################################
-
-RESOURCE_DCE120 = dce120_resource.o
-
-AMD_DAL_RESOURCE_DCE120 = $(addprefix $(AMDDALPATH)/dc/resource/dce120/,$(RESOURCE_DCE120))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCE120)
 
 ifdef CONFIG_DRM_AMD_DC_FP
 ###############################################################################
@@ -141,37 +127,5 @@ RESOURCE_DCN303 = dcn303_resource.o
 AMD_DAL_RESOURCE_DCN303 = $(addprefix $(AMDDALPATH)/dc/resource/dcn303/,$(RESOURCE_DCN303))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCN303)
-
-###############################################################################
-
-RESOURCE_DCN31 = dcn31_resource.o
-
-AMD_DAL_RESOURCE_DCN31 = $(addprefix $(AMDDALPATH)/dc/resource/dcn31/,$(RESOURCE_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCN31)
-
-###############################################################################
-
-RESOURCE_DCN314 = dcn314_resource.o
-
-AMD_DAL_RESOURCE_DCN314 = $(addprefix $(AMDDALPATH)/dc/resource/dcn314/,$(RESOURCE_DCN314))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCN314)
-
-###############################################################################
-
-RESOURCE_DCN315 = dcn315_resource.o
-
-AMD_DAL_RESOURCE_DCN315 = $(addprefix $(AMDDALPATH)/dc/resource/dcn315/,$(RESOURCE_DCN315))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCN315)
-
-###############################################################################
-
-RESOURCE_DCN316 = dcn316_resource.o
-
-AMD_DAL_RESOURCE_DCN316 = $(addprefix $(AMDDALPATH)/dc/resource/dcn316/,$(RESOURCE_DCN316))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_RESOURCE_DCN316)
 
 endif

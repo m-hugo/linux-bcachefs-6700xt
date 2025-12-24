@@ -76,9 +76,6 @@ bool dal_hw_factory_init(
 	case DCN_VERSION_3_16:
 		dal_hw_factory_dcn30_init(factory);
 		return true;
-	case DCN_VERSION_3_15:
-		dal_hw_factory_dcn315_init(factory);
-		return true;
 	default:
 		ASSERT_CRITICAL(false);
 		return false;

@@ -80,9 +80,6 @@ bool dal_hw_translate_init(
 	case DCN_VERSION_3_16:
 		dal_hw_translate_dcn30_init(translate);
 		return true;
-	case DCN_VERSION_3_15:
-		dal_hw_translate_dcn315_init(translate);
-		return true;
 	default:
 		BREAK_TO_DEBUGGER();
 		return false;
