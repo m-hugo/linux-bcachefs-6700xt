@@ -65,7 +65,7 @@ amdgpu-y += amdgpu_device.o amdgpu_doorbell_mgr.o amdgpu_kms.o \
 	amdgpu_umc.o smu_v11_0_i2c.o amdgpu_fru_eeprom.o amdgpu_rap.o \
 	amdgpu_fw_attestation.o amdgpu_securedisplay.o \
 	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o amdgpu_lsdma.o \
-	amdgpu_ring_mux.o amdgpu_xcp.o amdgpu_seq64.o amdgpu_aca.o amdgpu_dev_coredump.o \
+	amdgpu_ring_mux.o amdgpu_xcp.o amdgpu_seq64.o amdgpu_aca.o \
 	amdgpu_cper.o amdgpu_userq_fence.o amdgpu_eviction_fence.o amdgpu_ip.o
 
 amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
@@ -75,7 +75,7 @@ amdgpu-$(CONFIG_PERF_EVENTS) += amdgpu_pmu.o
 amdgpu-y += \
 	mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o \
 	nbio_v2_3.o nv.o mxgpu_nv.o \
-	hdp_v4_0.o hdp_v5_0.o soc21.o soc24.o \
+	hdp_v4_0.o hdp_v5_0.o \
 	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v5_2.o \
 	nbif_v6_3_1.o
 
@@ -83,11 +83,11 @@ amdgpu-y += \
 amdgpu-y += \
 	gmc_v7_0.o \
 	gmc_v8_0.o \
-	gfxhub_v1_0.o mmhub_v1_0.o gmc_v9_0.o gfxhub_v1_1.o mmhub_v9_4.o \
+	gfxhub_v1_0.o mmhub_v1_0.o gfxhub_v1_1.o mmhub_v9_4.o \
 	gfxhub_v2_0.o mmhub_v2_0.o gmc_v10_0.o gfxhub_v2_1.o mmhub_v2_3.o \
-	mmhub_v1_7.o gfxhub_v3_0.o mmhub_v3_0.o mmhub_v3_0_2.o gmc_v11_0.o \
+	mmhub_v1_7.o gfxhub_v3_0.o mmhub_v3_0.o mmhub_v3_0_2.o \
 	mmhub_v3_0_1.o gfxhub_v3_0_3.o gfxhub_v1_2.o mmhub_v1_8.o mmhub_v3_3.o \
-	gfxhub_v11_5_0.o mmhub_v4_1_0.o gfxhub_v12_0.o gmc_v12_0.o
+	mmhub_v4_1_0.o
 
 # add UMC block
 amdgpu-y += \
@@ -99,8 +99,7 @@ amdgpu-y += \
 	amdgpu_ih.o \
 	navi10_ih.o \
 	ih_v6_0.o \
-	ih_v6_1.o \
-	ih_v7_0.o
+	ih_v6_1.o
 
 # add PSP block
 amdgpu-y += \
@@ -118,12 +117,7 @@ amdgpu-y += \
 amdgpu-y += \
 	amdgpu_gfx.o \
 	amdgpu_rlc.o \
-	gfx_v10_0.o \
-	imu_v11_0.o \
-	gfx_v11_0.o \
-	imu_v11_0_3.o \
-	gfx_v11_0_3.o \
-	imu_v12_0.o
+	gfx_v10_0.o
 
 # add async DMA block
 amdgpu-y += \
@@ -133,68 +127,35 @@ amdgpu-y += \
 
 # add MES block
 amdgpu-y += \
-	amdgpu_mes.o \
-	mes_v11_0.o \
-	mes_v12_0.o
+	amdgpu_mes.o
 
 # add GFX userqueue support
 amdgpu-y += mes_userqueue.o
 
 # add UVD block
 amdgpu-y += \
-	amdgpu_uvd.o \
-	uvd_v5_0.o \
-	uvd_v6_0.o \
-	uvd_v7_0.o
+	amdgpu_uvd.o
 
 # add VCE block
 amdgpu-y += \
-	amdgpu_vce.o \
-	vce_v3_0.o \
-	vce_v4_0.o
+	amdgpu_vce.o
 
 # add VCN and JPEG block
 amdgpu-y += \
 	amdgpu_vcn.o \
 	vcn_sw_ring.o \
-	vcn_v1_0.o \
 	vcn_v2_0.o \
-	vcn_v2_5.o \
 	vcn_v3_0.o \
-	vcn_v4_0.o \
-	vcn_v4_0_3.o \
-	vcn_v4_0_5.o \
-	vcn_v5_0_0.o \
-	vcn_v5_0_1.o \
 	amdgpu_jpeg.o \
-	jpeg_v1_0.o \
 	jpeg_v2_0.o \
-	jpeg_v2_5.o \
-	jpeg_v3_0.o \
-	jpeg_v4_0.o \
-	jpeg_v4_0_3.o \
-	jpeg_v4_0_5.o \
-	jpeg_v5_0_0.o \
-	jpeg_v5_0_1.o
-
-# add VPE block
-amdgpu-y += \
-	amdgpu_vpe.o \
-	vpe_v6_1.o
-
-# add UMSCH block
-amdgpu-y += \
-	amdgpu_umsch_mm.o \
-	umsch_mm_v4_0.o
+	jpeg_v3_0.o
 
 #
 # add ATHUB block
 amdgpu-y += \
 	athub_v1_0.o \
 	athub_v2_0.o \
-	athub_v2_1.o \
-	athub_v3_0.o \
-	athub_v4_1_0.o
+	athub_v2_1.o
 
 # add SMUIO block
 amdgpu-y += \

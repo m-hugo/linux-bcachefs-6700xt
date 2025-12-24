@@ -5793,9 +5793,6 @@ int amdgpu_device_reinit_after_reset(struct amdgpu_reset_context *reset_context)
 
 				vram_lost = amdgpu_device_check_vram_lost(tmp_adev);
 
-				if (!test_bit(AMDGPU_SKIP_COREDUMP, &reset_context->flags))
-					amdgpu_coredump(tmp_adev, false, vram_lost, reset_context->job);
-
 				if (vram_lost) {
 					dev_info(
 						tmp_adev->dev,
