@@ -1915,14 +1915,6 @@ static int amdgpu_discovery_set_ih_ip_blocks(struct amdgpu_device *adev)
 	case IP_VERSION(5, 2, 1):
 		amdgpu_device_ip_block_add(adev, &navi10_ih_ip_block);
 		break;
-	case IP_VERSION(6, 0, 0):
-	case IP_VERSION(6, 0, 1):
-	case IP_VERSION(6, 0, 2):
-		amdgpu_device_ip_block_add(adev, &ih_v6_0_ip_block);
-		break;
-	case IP_VERSION(6, 1, 0):
-		amdgpu_device_ip_block_add(adev, &ih_v6_1_ip_block);
-		break;
 	default:
 		dev_err(adev->dev,
 			"Failed to add ih ip block(OSSSYS_HWIP:0x%x)\n",
@@ -2299,11 +2291,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 	case IP_VERSION(13, 0, 10):
 		adev->smuio.funcs = &smuio_v11_0_6_funcs;
 		break;
-	default:
-		break;
-	}
-
-	switch (amdgpu_ip_version(adev, LSDMA_HWIP, 0)) {
 	default:
 		break;
 	}

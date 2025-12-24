@@ -88,9 +88,7 @@ amdgpu-y += umc_v6_7.o umc_v8_7.o
 amdgpu-y += \
 	amdgpu_irq.o \
 	amdgpu_ih.o \
-	navi10_ih.o \
-	ih_v6_0.o \
-	ih_v6_1.o
+	navi10_ih.o
 
 # add PSP block
 amdgpu-y += \
@@ -140,7 +138,6 @@ amdgpu-y += \
 #
 # add ATHUB block
 amdgpu-y += \
-	athub_v1_0.o \
 	athub_v2_0.o \
 	athub_v2_1.o
 
@@ -150,12 +147,7 @@ amdgpu-y += \
 	smuio_v11_0_6.o
 
 # add reset block
-amdgpu-y += \
-	amdgpu_reset.o
-
-# add MCA block
-amdgpu-y += \
-	mca_v3_0.o
+amdgpu-y += amdgpu_reset.o
 
 # add amdkfd interfaces
 amdgpu-y += amdgpu_amdkfd.o
@@ -169,10 +161,7 @@ amdgpu-y += amdgpu_cgs.o
 # GPU scheduler
 amdgpu-y += amdgpu_job.o
 
-amdgpu-$(CONFIG_COMPAT) += amdgpu_ioc32.o
-amdgpu-$(CONFIG_VGA_SWITCHEROO) += amdgpu_atpx_handler.o
 amdgpu-$(CONFIG_ACPI) += amdgpu_acpi.o
-amdgpu-$(CONFIG_HMM_MIRROR) += amdgpu_hmm.o
 
 include $(FULL_AMD_PATH)/pm/Makefile
 amdgpu-y += $(AMD_POWERPLAY_FILES)
