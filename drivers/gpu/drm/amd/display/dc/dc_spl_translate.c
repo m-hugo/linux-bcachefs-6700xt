@@ -10,12 +10,6 @@
 static struct spl_callbacks dcn2_spl_callbacks = {
 	.spl_calc_lb_num_partitions = dscl2_spl_calc_lb_num_partitions,
 };
-static struct spl_callbacks dcn32_spl_callbacks = {
-	.spl_calc_lb_num_partitions = dscl32_spl_calc_lb_num_partitions,
-};
-static struct spl_callbacks dcn401_spl_callbacks = {
-	.spl_calc_lb_num_partitions = dscl401_spl_calc_lb_num_partitions,
-};
 static void populate_splrect_from_rect(struct spl_rect *spl_rect, const struct rect *rect)
 {
 	spl_rect->x = rect->x;

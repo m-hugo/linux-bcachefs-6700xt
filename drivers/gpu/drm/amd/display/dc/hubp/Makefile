@@ -62,12 +62,5 @@ AMD_DAL_HUBP_DCN30 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn30/,$(HUBP_DCN30))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN30)
 
-###############################################################################
-
-HUBP_DCN31 = dcn31_hubp.o
-
-AMD_DAL_HUBP_DCN31 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn31/,$(HUBP_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN31)
 
 endif

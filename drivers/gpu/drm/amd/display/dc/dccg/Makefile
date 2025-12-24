@@ -62,20 +62,4 @@ AMD_DAL_DCCG_DCN301 = $(addprefix $(AMDDALPATH)/dc/dccg/dcn301/,$(DCCG_DCN301))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_DCCG_DCN301)
 
-###############################################################################
-
-DCCG_DCN31 = dcn31_dccg.o
-
-AMD_DAL_DCCG_DCN31 = $(addprefix $(AMDDALPATH)/dc/dccg/dcn31/,$(DCCG_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DCCG_DCN31)
-
-###############################################################################
-
-DCCG_DCN314 = dcn314_dccg.o
-
-AMD_DAL_DCCG_DCN314 = $(addprefix $(AMDDALPATH)/dc/dccg/dcn314/,$(DCCG_DCN314))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DCCG_DCN314)
-
 endif
