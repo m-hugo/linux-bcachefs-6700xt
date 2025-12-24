@@ -10,12 +10,6 @@
 static struct spl_callbacks dcn2_spl_callbacks = {
 	.spl_calc_lb_num_partitions = dscl2_spl_calc_lb_num_partitions,
 };
-static struct spl_callbacks dcn32_spl_callbacks = {
-	.spl_calc_lb_num_partitions = dscl32_spl_calc_lb_num_partitions,
-};
-static struct spl_callbacks dcn401_spl_callbacks = {
-	.spl_calc_lb_num_partitions = dscl401_spl_calc_lb_num_partitions,
-};
 static void populate_splrect_from_rect(struct spl_rect *spl_rect, const struct rect *rect)
 {
 	spl_rect->x = rect->x;
@@ -84,12 +78,6 @@ void translate_SPL_in_params_from_pipe_ctx(struct pipe_ctx *pipe_ctx, struct spl
 	switch (plane_state->ctx->dce_version)	{
 	case DCN_VERSION_2_0:
 		spl_in->callbacks = dcn2_spl_callbacks;
-		break;
-	case DCN_VERSION_3_2:
-		spl_in->callbacks = dcn32_spl_callbacks;
-		break;
-	case DCN_VERSION_4_01:
-		spl_in->callbacks = dcn401_spl_callbacks;
 		break;
 	default:
 		spl_in->callbacks = dcn2_spl_callbacks;

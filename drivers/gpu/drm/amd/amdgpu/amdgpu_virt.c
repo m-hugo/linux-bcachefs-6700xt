@@ -745,10 +745,6 @@ static u32 amdgpu_virt_init_detect_asic(struct amdgpu_device *adev)
 	uint32_t reg;
 
 	switch (adev->asic_type) {
-	case CHIP_TONGA:
-	case CHIP_FIJI:
-		reg = RREG32(mmBIF_IOV_FUNC_IDENTIFIER);
-		break;
 	case CHIP_VEGA10:
 	case CHIP_VEGA20:
 	case CHIP_NAVI10:
@@ -788,24 +784,6 @@ static bool amdgpu_virt_init_req_data(struct amdgpu_device *adev, u32 reg)
 		is_sriov = true;
 
 		switch (adev->asic_type) {
-		case CHIP_TONGA:
-		case CHIP_FIJI:
-			vi_set_virt_ops(adev);
-			break;
-		case CHIP_VEGA10:
-			soc15_set_virt_ops(adev);
-#ifdef CONFIG_X86
-			/* not send GPU_INIT_DATA with MS_HYPERV*/
-			if (!hypervisor_is_type(X86_HYPER_MS_HYPERV))
-#endif
-				/* send a dummy GPU_INIT_DATA request to host on vega10 */
-				amdgpu_virt_request_init_data(adev);
-			break;
-		case CHIP_VEGA20:
-		case CHIP_ARCTURUS:
-		case CHIP_ALDEBARAN:
-			soc15_set_virt_ops(adev);
-			break;
 		case CHIP_NAVI10:
 		case CHIP_NAVI12:
 		case CHIP_SIENNA_CICHLID:

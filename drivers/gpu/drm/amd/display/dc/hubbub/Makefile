@@ -70,35 +70,4 @@ AMD_DAL_HUBBUB_DCN301 = $(addprefix $(AMDDALPATH)/dc/hubbub/dcn301/,$(HUBBUB_DCN
 
 AMD_DISPLAY_FILES += $(AMD_DAL_HUBBUB_DCN301)
 
-###############################################################################
-
-HUBBUB_DCN31 = dcn31_hubbub.o
-
-AMD_DAL_HUBBUB_DCN31 = $(addprefix $(AMDDALPATH)/dc/hubbub/dcn31/,$(HUBBUB_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBBUB_DCN31)
-
-###############################################################################
-HUBBUB_DCN32 = dcn32_hubbub.o
-
-AMD_DAL_HUBBUB_DCN32 = $(addprefix $(AMDDALPATH)/dc/hubbub/dcn32/,$(HUBBUB_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBBUB_DCN32)
-
-###############################################################################
-
-HUBBUB_DCN35 = dcn35_hubbub.o
-
-AMD_DAL_HUBBUB_DCN35 = $(addprefix $(AMDDALPATH)/dc/hubbub/dcn35/,$(HUBBUB_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBBUB_DCN35)
-
-###############################################################################
-HUBBUB_DCN401 = dcn401_hubbub.o
-
-AMD_DAL_HUBBUB_DCN401 = $(addprefix $(AMDDALPATH)/dc/hubbub/dcn401/,$(HUBBUB_DCN401))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBBUB_DCN401)
-
-###############################################################################
 endif

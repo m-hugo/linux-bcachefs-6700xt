@@ -105,64 +105,6 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
 	enum dce_version dc_version = DCE_VERSION_UNKNOWN;
 
 	switch (asic_id.chip_family) {
-
-#if defined(CONFIG_DRM_AMD_DC_SI)
-	case FAMILY_SI:
-		if (ASIC_REV_IS_TAHITI_P(asic_id.hw_internal_rev) ||
-		    ASIC_REV_IS_PITCAIRN_PM(asic_id.hw_internal_rev) ||
-		    ASIC_REV_IS_CAPEVERDE_M(asic_id.hw_internal_rev))
-			dc_version = DCE_VERSION_6_0;
-		else if (ASIC_REV_IS_OLAND_M(asic_id.hw_internal_rev))
-			dc_version = DCE_VERSION_6_4;
-		else
-			dc_version = DCE_VERSION_6_1;
-		break;
-#endif
-	case FAMILY_CI:
-		dc_version = DCE_VERSION_8_0;
-		break;
-	case FAMILY_KV:
-		if (ASIC_REV_IS_KALINDI(asic_id.hw_internal_rev) ||
-		    ASIC_REV_IS_BHAVANI(asic_id.hw_internal_rev) ||
-		    ASIC_REV_IS_GODAVARI(asic_id.hw_internal_rev))
-			dc_version = DCE_VERSION_8_3;
-		else
-			dc_version = DCE_VERSION_8_1;
-		break;
-	case FAMILY_CZ:
-		dc_version = DCE_VERSION_11_0;
-		break;
-
-	case FAMILY_VI:
-		if (ASIC_REV_IS_TONGA_P(asic_id.hw_internal_rev) ||
-				ASIC_REV_IS_FIJI_P(asic_id.hw_internal_rev)) {
-			dc_version = DCE_VERSION_10_0;
-			break;
-		}
-		if (ASIC_REV_IS_POLARIS10_P(asic_id.hw_internal_rev) ||
-				ASIC_REV_IS_POLARIS11_M(asic_id.hw_internal_rev) ||
-				ASIC_REV_IS_POLARIS12_V(asic_id.hw_internal_rev)) {
-			dc_version = DCE_VERSION_11_2;
-		}
-		if (ASIC_REV_IS_VEGAM(asic_id.hw_internal_rev))
-			dc_version = DCE_VERSION_11_22;
-		break;
-	case FAMILY_AI:
-		if (ASICREV_IS_VEGA20_P(asic_id.hw_internal_rev))
-			dc_version = DCE_VERSION_12_1;
-		else
-			dc_version = DCE_VERSION_12_0;
-		break;
-	case FAMILY_RV:
-		dc_version = DCN_VERSION_1_0;
-		if (ASICREV_IS_RAVEN2(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_1_01;
-		if (ASICREV_IS_RENOIR(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_2_1;
-		if (ASICREV_IS_GREEN_SARDINE(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_2_1;
-		break;
-
 	case FAMILY_NV:
 		dc_version = DCN_VERSION_2_0;
 		if (asic_id.chip_id == DEVICE_ID_NV_13FE || asic_id.chip_id == DEVICE_ID_NV_143F) {
@@ -176,15 +118,6 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
 		if (ASICREV_IS_BEIGE_GOBY_P(asic_id.hw_internal_rev))
 			dc_version = DCN_VERSION_3_03;
 		break;
-
-	case FAMILY_VGH:
-		dc_version = DCN_VERSION_3_01;
-		break;
-
-	case FAMILY_YELLOW_CARP:
-		if (ASICREV_IS_YELLOW_CARP(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_3_1;
-		break;
 	case AMDGPU_FAMILY_GC_10_3_6:
 		if (ASICREV_IS_GC_10_3_6(asic_id.hw_internal_rev))
 			dc_version = DCN_VERSION_3_15;
@@ -192,26 +125,6 @@ enum dce_version resource_parse_asic_id(struct hw_asic_id asic_id)
 	case AMDGPU_FAMILY_GC_10_3_7:
 		if (ASICREV_IS_GC_10_3_7(asic_id.hw_internal_rev))
 			dc_version = DCN_VERSION_3_16;
-		break;
-	case AMDGPU_FAMILY_GC_11_0_0:
-		dc_version = DCN_VERSION_3_2;
-		if (ASICREV_IS_GC_11_0_2(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_3_21;
-		break;
-	case AMDGPU_FAMILY_GC_11_0_1:
-		dc_version = DCN_VERSION_3_14;
-		break;
-	case AMDGPU_FAMILY_GC_11_5_0:
-		dc_version = DCN_VERSION_3_5;
-		if (ASICREV_IS_GC_11_0_4(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_3_51;
-		if (ASICREV_IS_DCN36(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_3_6;
-		break;
-	case AMDGPU_FAMILY_GC_12_0_0:
-		if (ASICREV_IS_GC_12_0_1_A0(asic_id.hw_internal_rev) ||
-			ASICREV_IS_GC_12_0_0_A0(asic_id.hw_internal_rev))
-			dc_version = DCN_VERSION_4_01;
 		break;
 	default:
 		dc_version = DCE_VERSION_UNKNOWN;
@@ -227,57 +140,7 @@ struct resource_pool *dc_create_resource_pool(struct dc  *dc,
 	struct resource_pool *res_pool = NULL;
 
 	switch (dc_version) {
-#if defined(CONFIG_DRM_AMD_DC_SI)
-	case DCE_VERSION_6_0:
-		res_pool = dce60_create_resource_pool(
-			init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_6_1:
-		res_pool = dce61_create_resource_pool(
-			init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_6_4:
-		res_pool = dce64_create_resource_pool(
-			init_data->num_virtual_links, dc);
-		break;
-#endif
-	case DCE_VERSION_8_0:
-		res_pool = dce80_create_resource_pool(
-				init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_8_1:
-		res_pool = dce81_create_resource_pool(
-				init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_8_3:
-		res_pool = dce83_create_resource_pool(
-				init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_10_0:
-		res_pool = dce100_create_resource_pool(
-				init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_11_0:
-		res_pool = dce110_create_resource_pool(
-				init_data->num_virtual_links, dc,
-				init_data->asic_id);
-		break;
-	case DCE_VERSION_11_2:
-	case DCE_VERSION_11_22:
-		res_pool = dce112_create_resource_pool(
-				init_data->num_virtual_links, dc);
-		break;
-	case DCE_VERSION_12_0:
-	case DCE_VERSION_12_1:
-		res_pool = dce120_create_resource_pool(
-				init_data->num_virtual_links, dc);
-		break;
-
 #if defined(CONFIG_DRM_AMD_DC_FP)
-	case DCN_VERSION_1_0:
-	case DCN_VERSION_1_01:
-		res_pool = dcn10_create_resource_pool(init_data, dc);
-		break;
 	case DCN_VERSION_2_0:
 		res_pool = dcn20_create_resource_pool(init_data, dc);
 		break;
@@ -298,36 +161,6 @@ struct resource_pool *dc_create_resource_pool(struct dc  *dc,
 		break;
 	case DCN_VERSION_3_03:
 		res_pool = dcn303_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_1:
-		res_pool = dcn31_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_14:
-		res_pool = dcn314_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_15:
-		res_pool = dcn315_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_16:
-		res_pool = dcn316_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_2:
-		res_pool = dcn32_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_21:
-		res_pool = dcn321_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_5:
-		res_pool = dcn35_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_51:
-		res_pool = dcn351_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_3_6:
-		res_pool = dcn36_create_resource_pool(init_data, dc);
-		break;
-	case DCN_VERSION_4_01:
-		res_pool = dcn401_create_resource_pool(init_data, dc);
 		break;
 #endif /* CONFIG_DRM_AMD_DC_FP */
 	default:

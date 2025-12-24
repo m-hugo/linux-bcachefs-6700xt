@@ -23,13 +23,3 @@
 #
 #
 
-ifdef CONFIG_DRM_AMD_DC_FP
-###############################################################################
-# DCN35
-###############################################################################
-PG_DCN35 = dcn35_pg_cntl.o
-
-AMD_DAL_PG_DCN35 = $(addprefix $(AMDDALPATH)/dc/pg/dcn35/,$(PG_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_PG_DCN35)
-endif

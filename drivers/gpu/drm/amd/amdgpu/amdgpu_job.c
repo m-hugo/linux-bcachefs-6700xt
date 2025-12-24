@@ -36,16 +36,7 @@
 static void amdgpu_job_do_core_dump(struct amdgpu_device *adev,
 				    struct amdgpu_job *job)
 {
-	int i;
-
-	dev_info(adev->dev, "Dumping IP State\n");
-	for (i = 0; i < adev->num_ip_blocks; i++)
-		if (adev->ip_blocks[i].version->funcs->dump_ip_state)
-			adev->ip_blocks[i].version->funcs
-				->dump_ip_state((void *)&adev->ip_blocks[i]);
-	dev_info(adev->dev, "Dumping IP State Completed\n");
-
-	amdgpu_coredump(adev, true, false, job);
+	dev_warn(adev->dev, "amdgpu_coredump disabled, can't dump'\n");
 }
 
 static void amdgpu_job_core_dump(struct amdgpu_device *adev,

@@ -70,45 +70,5 @@ AMD_DAL_OPTC_DCN301 = $(addprefix $(AMDDALPATH)/dc/optc/dcn301/,$(OPTC_DCN301))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_OPTC_DCN301)
 
-###############################################################################
-
-OPTC_DCN31 = dcn31_optc.o
-
-AMD_DAL_OPTC_DCN31 = $(addprefix $(AMDDALPATH)/dc/optc/dcn31/,$(OPTC_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_OPTC_DCN31)
-
-###############################################################################
-
-OPTC_DCN314 = dcn314_optc.o
-
-AMD_DAL_OPTC_DCN314 = $(addprefix $(AMDDALPATH)/dc/optc/dcn314/,$(OPTC_DCN314))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_OPTC_DCN314)
-
-###############################################################################
-
-OPTC_DCN32 = dcn32_optc.o
-
-AMD_DAL_OPTC_DCN32 = $(addprefix $(AMDDALPATH)/dc/optc/dcn32/,$(OPTC_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_OPTC_DCN32)
-
-###############################################################################
-
-OPTC_DCN35 = dcn35_optc.o
-
-AMD_DAL_OPTC_DCN35 = $(addprefix $(AMDDALPATH)/dc/optc/dcn35/,$(OPTC_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_OPTC_DCN35)
-
-###############################################################################
-
-###############################################################################
-OPTC_DCN401 = dcn401_optc.o
-
-AMD_DAL_OPTC_DCN401 = $(addprefix $(AMDDALPATH)/dc/optc/dcn401/,$(OPTC_DCN401))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_OPTC_DCN401)
 endif
 

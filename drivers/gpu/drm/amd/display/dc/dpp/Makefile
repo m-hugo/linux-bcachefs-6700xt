@@ -56,28 +56,4 @@ AMD_DAL_DPP_DCN30 = $(addprefix $(AMDDALPATH)/dc/dpp/dcn30/,$(DPP_DCN30))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_DPP_DCN30)
 
-###############################################################################
-
-DPP_DCN32 = dcn32_dpp.o
-
-AMD_DAL_DPP_DCN32 = $(addprefix $(AMDDALPATH)/dc/dpp/dcn32/,$(DPP_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DPP_DCN32)
-
-###############################################################################
-
-DPP_DCN35 = dcn35_dpp.o
-
-AMD_DAL_DPP_DCN35 = $(addprefix $(AMDDALPATH)/dc/dpp/dcn35/,$(DPP_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DPP_DCN35)
-
-###############################################################################
-
-DPP_DCN401 = dcn401_dpp.o dcn401_dpp_cm.o dcn401_dpp_dscl.o
-
-AMD_DAL_DPP_DCN401 = $(addprefix $(AMDDALPATH)/dc/dpp/dcn401/,$(DPP_DCN401))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_DPP_DCN401)
-
 endif

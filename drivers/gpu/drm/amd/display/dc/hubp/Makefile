@@ -62,36 +62,5 @@ AMD_DAL_HUBP_DCN30 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn30/,$(HUBP_DCN30))
 
 AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN30)
 
-###############################################################################
-
-HUBP_DCN31 = dcn31_hubp.o
-
-AMD_DAL_HUBP_DCN31 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn31/,$(HUBP_DCN31))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN31)
-
-###############################################################################
-
-HUBP_DCN32 = dcn32_hubp.o
-
-AMD_DAL_HUBP_DCN32 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn32/,$(HUBP_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN32)
-
-###############################################################################
-
-HUBP_DCN35 = dcn35_hubp.o
-
-AMD_DAL_HUBP_DCN35 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn35/,$(HUBP_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN35)
-
-###############################################################################
-
-HUBP_DCN401 = dcn401_hubp.o
-
-AMD_DAL_HUBP_DCN401 = $(addprefix $(AMDDALPATH)/dc/hubp/dcn401/,$(HUBP_DCN401))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_HUBP_DCN401)
 
 endif

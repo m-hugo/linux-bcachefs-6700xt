@@ -33,22 +33,5 @@ AMD_DAL_MMHUBBUB_DCN20 = $(addprefix $(AMDDALPATH)/dc/mmhubbub/dcn20/,$(MMHUBBUB
 
 AMD_DISPLAY_FILES += $(AMD_DAL_MMHUBBUB_DCN20)
 
-###############################################################################
-# DCN32
-###############################################################################
-MMHUBBUB_DCN32 = dcn32_mmhubbub.o
-
-AMD_DAL_MMHUBBUB_DCN32 = $(addprefix $(AMDDALPATH)/dc/mmhubbub/dcn32/,$(MMHUBBUB_DCN32))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_MMHUBBUB_DCN32)
-
-###############################################################################
-# DCN35
-###############################################################################
-MMHUBBUB_DCN35 = dcn35_mmhubbub.o
-
-AMD_DAL_MMHUBBUB_DCN35 = $(addprefix $(AMDDALPATH)/dc/mmhubbub/dcn35/,$(MMHUBBUB_DCN35))
-
-AMD_DISPLAY_FILES += $(AMD_DAL_MMHUBBUB_DCN35)
 endif
 

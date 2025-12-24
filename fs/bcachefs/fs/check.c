@@ -910,12 +910,18 @@ static int check_inode(struct btree_trans *trans,
 	try(bch2_inode_unpack(k, &u));
 
 	if (snapshot_root->bi_inum != u.bi_inum ||
-	    !bch2_snapshot_is_ancestor(c, u.bi_snapshot, snapshot_root->bi_snapshot))
-		try(bch2_inode_find_oldest_snapshot(trans, u.bi_inum, u.bi_snapshot, snapshot_root));
+	    !bch2_snapshot_is_ancestor(c, u.bi_snapshot, snapshot_root->bi_snapshot)) {
+		ret = bch2_inode_find_oldest_snapshot(trans, u.bi_inum, u.bi_snapshot, snapshot_root);
+		if (ret)
+			goto err;
+	}
 
 	if (u.bi_hash_seed	!= snapshot_root->bi_hash_seed ||
-	    INODE_STR_HASH(&u)	!= INODE_STR_HASH(snapshot_root))
-		try(bch2_repair_inode_hash_info(trans, &u, snapshot_root));
+	    INODE_STR_HASH(&u)	!= INODE_STR_HASH(snapshot_root)) {
+		ret = bch2_repair_inode_hash_info(trans, &u, snapshot_root);
+		if (ret)
+			goto err;
+	}
 
 	ret = bch2_check_inode_has_case_insensitive(trans, &u, &s->ids, &do_update);
 	if (bch2_err_matches(ret, ENOENT)) /* disconnected inode; will be fixed by a later pass */
