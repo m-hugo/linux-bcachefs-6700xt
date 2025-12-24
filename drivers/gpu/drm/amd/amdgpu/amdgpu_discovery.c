@@ -2232,14 +2232,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 		adev->nbio.funcs = &nbio_v2_3_funcs;
 		adev->nbio.hdp_flush_reg = &nbio_v2_3_hdp_flush_reg;
 		break;
-	case IP_VERSION(4, 3, 0):
-	case IP_VERSION(4, 3, 1):
-		if (amdgpu_sriov_vf(adev))
-			adev->nbio.funcs = &nbio_v4_3_sriov_funcs;
-		else
-			adev->nbio.funcs = &nbio_v4_3_funcs;
-		adev->nbio.hdp_flush_reg = &nbio_v4_3_hdp_flush_reg;
-		break;
 	default:
 		break;
 	}
@@ -2264,9 +2256,6 @@ int amdgpu_discovery_set_ip_blocks(struct amdgpu_device *adev)
 	case IP_VERSION(5, 0, 4):
 	case IP_VERSION(5, 2, 0):
 		adev->hdp.funcs = &hdp_v5_0_funcs;
-		break;
-	case IP_VERSION(5, 2, 1):
-		adev->hdp.funcs = &hdp_v5_2_funcs;
 		break;
 	default:
 		break;

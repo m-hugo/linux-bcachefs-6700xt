@@ -62,7 +62,7 @@ amdgpu-y += amdgpu_device.o amdgpu_doorbell_mgr.o amdgpu_kms.o \
 	amdgpu_debugfs.o amdgpu_ids.o amdgpu_gmc.o amdgpu_mmhub.o amdgpu_hdp.o \
 	amdgpu_xgmi.o amdgpu_csa.o amdgpu_ras.o amdgpu_vm_cpu.o \
 	amdgpu_vm_sdma.o amdgpu_discovery.o amdgpu_ras_eeprom.o amdgpu_nbio.o \
-	amdgpu_umc.o smu_v11_0_i2c.o amdgpu_fru_eeprom.o amdgpu_rap.o \
+	amdgpu_umc.o amdgpu_fru_eeprom.o amdgpu_rap.o \
 	amdgpu_fw_attestation.o amdgpu_securedisplay.o \
 	amdgpu_eeprom.o amdgpu_mca.o amdgpu_psp_ta.o amdgpu_lsdma.o \
 	amdgpu_ring_mux.o amdgpu_xcp.o amdgpu_seq64.o amdgpu_aca.o \
@@ -75,8 +75,7 @@ amdgpu-$(CONFIG_PERF_EVENTS) += amdgpu_pmu.o
 amdgpu-y += \
 	soc15.o emu_soc.o \
 	nbio_v2_3.o nv.o mxgpu_nv.o \
-	hdp_v4_0.o hdp_v5_0.o \
-	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v5_2.o
+	hdp_v4_0.o hdp_v5_0.o
 
 # add GMC block
 amdgpu-y += gfxhub_v2_0.o mmhub_v2_0.o gmc_v10_0.o gfxhub_v2_1.o mmhub_v2_3.o
@@ -93,8 +92,7 @@ amdgpu-y += \
 # add PSP block
 amdgpu-y += \
 	amdgpu_psp.o \
-	psp_v11_0.o \
-	psp_v11_0_8.o
+	psp_v11_0.o
 
 # add DCE block
 amdgpu-y += \
