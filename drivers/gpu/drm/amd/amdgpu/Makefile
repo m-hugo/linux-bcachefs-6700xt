@@ -73,25 +73,16 @@ amdgpu-$(CONFIG_PROC_FS) += amdgpu_fdinfo.o
 amdgpu-$(CONFIG_PERF_EVENTS) += amdgpu_pmu.o
 
 amdgpu-y += \
-	mxgpu_vi.o nbio_v6_1.o soc15.o emu_soc.o mxgpu_ai.o \
+	soc15.o emu_soc.o \
 	nbio_v2_3.o nv.o mxgpu_nv.o \
 	hdp_v4_0.o hdp_v5_0.o \
-	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v5_2.o \
-	nbif_v6_3_1.o
+	sienna_cichlid.o smu_v13_0_10.o nbio_v4_3.o hdp_v5_2.o
 
 # add GMC block
-amdgpu-y += \
-	gmc_v7_0.o \
-	gmc_v8_0.o \
-	gfxhub_v1_0.o mmhub_v1_0.o gfxhub_v1_1.o mmhub_v9_4.o \
-	gfxhub_v2_0.o mmhub_v2_0.o gmc_v10_0.o gfxhub_v2_1.o mmhub_v2_3.o \
-	mmhub_v1_7.o gfxhub_v3_0.o mmhub_v3_0.o mmhub_v3_0_2.o \
-	mmhub_v3_0_1.o gfxhub_v3_0_3.o gfxhub_v1_2.o mmhub_v1_8.o mmhub_v3_3.o \
-	mmhub_v4_1_0.o
+amdgpu-y += gfxhub_v2_0.o mmhub_v2_0.o gmc_v10_0.o gfxhub_v2_1.o mmhub_v2_3.o
 
 # add UMC block
-amdgpu-y += \
-	umc_v6_0.o umc_v6_1.o umc_v6_7.o umc_v8_7.o umc_v8_10.o umc_v12_0.o umc_v8_14.o
+amdgpu-y += umc_v6_7.o umc_v8_7.o
 
 # add IH block
 amdgpu-y += \
@@ -127,9 +118,6 @@ amdgpu-y += \
 # add MES block
 amdgpu-y += \
 	amdgpu_mes.o
-
-# add GFX userqueue support
-amdgpu-y += mes_userqueue.o
 
 # add UVD block
 amdgpu-y += \

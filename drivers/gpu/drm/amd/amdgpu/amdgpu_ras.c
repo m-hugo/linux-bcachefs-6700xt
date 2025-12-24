@@ -4015,17 +4015,6 @@ int amdgpu_ras_init(struct amdgpu_device *adev)
 			 * check DF RAS */
 			adev->nbio.ras = &nbio_v4_3_ras;
 		break;
-	case IP_VERSION(6, 3, 1):
-		if (adev->ras_hw_enabled & (1 << AMDGPU_RAS_BLOCK__DF))
-			/* unlike other generation of nbio ras,
-			 * nbif v6_3_1 only support fatal error interrupt
-			 * to inform software that DF is freezed due to
-			 * system fatal error event. driver should not
-			 * enable nbio ras in such case. Instead,
-			 * check DF RAS
-			 */
-			adev->nbio.ras = &nbif_v6_3_1_ras;
-		break;
 	default:
 		/* nbio ras is not available */
 		break;
